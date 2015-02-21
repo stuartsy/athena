@@ -45,6 +45,35 @@ json["AnnouncementBody"]. each do |sivayetski|
 	curDate = json["AnnouncementDate"][i]["Date"]
 	curDescription = json["AnnouncementBody"][i]["Description"]
 
+	exam = false
+	hw = false
+
+	if curDescription.match(/midterm/i)
+		exam = true
+	end
+	if curDescription.match(/final/i)
+		exam = true
+	end	
+	if curDescription.match(/exam/i)
+		exam = true
+	end
+	if curDescription.match(/test/i)
+		exam = true
+	end
+
+	if curDescription.match(/hw/i)
+		hw = true
+	end
+	if curDescription.match(/assignment/i)
+		hw = true
+	end	
+	if curDescription.match(/problem/i)
+		hw = true
+	end
+	if curDescription.match(/homework/i)
+		hw = true
+	end
+
 	update = Update.new(title: curHeader, date: curDate, body: curDescription)
 	update.course = course
 	update.save
