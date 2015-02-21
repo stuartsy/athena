@@ -7,7 +7,7 @@ json = JSON.parse(response.body) #this must show the JSON contents
 # p json
 
 i = 0
-json["AnnouncementBody"]. each do |anna|
+json["AnnouncementBody"]. each do |sivayetski|
 	p json["AnnouncementHeader"][i]["Header"]
 	p json["AnnouncementDate"][i]["Date"]
 	p json["AnnouncementBody"][i]["Description"]
