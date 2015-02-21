@@ -16,5 +16,8 @@
 //= require_tree .
 
 $(document).ready(function(){
-	
+	$(".class_tab").click(function(){
+		console.log("click");
+		$(this).css("background-color", "blue");
+	})
 })
