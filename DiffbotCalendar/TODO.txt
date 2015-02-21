@@ -1,0 +1,5 @@
+TODO:
+Make each class's color correspond to the color that it's assigned in the website
+
+Athena Blank Calendar Key:
+tvkrobbecdp0euis8ja49cup9s@group.calendar.google.com

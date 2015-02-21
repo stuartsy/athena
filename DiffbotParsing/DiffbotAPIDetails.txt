@@ -31,3 +31,6 @@ http://www.keithschwarz.com/ //everything on keith's website works on CS103
 CS 110 By Cain - Piazza Additionally
 CME 102: Piazza Only
 PWR 1 (Rhetoric of Gaming): Works for only post grabbing, site does not contain exams or homework
+
+------------
+If a course is run by keithschwarz.com
