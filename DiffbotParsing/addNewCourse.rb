@@ -43,8 +43,8 @@ json["AnnouncementBody"]. each do |sivayetski|
 	curDescription = json["AnnouncementBody"][i]["Description"]
 
 	update = Update.new(title: curHeader, date: curDate, body: curDescription)
-	update.save
 	update.course = course
+	update.save
 	i = i + 1 
 end
 
