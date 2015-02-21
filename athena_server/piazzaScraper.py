@@ -27,24 +27,20 @@ for i in jsonUserData["all_classes"]:
         continue
 
 
-    # os.chdir("/Users/sarayeva/Downloads")
-    # if not os.path.exists("/Users/sarayeva/Downloads/" + className):
-    # 	os.mkdir("/Users/sarayeva/Downloads/" + className)
-    # os.chdir("/Users/sarayeva/Downloads/" + className)
+    os.chdir("/Users/sarayeva/Downloads")
+    if not os.path.exists("/Users/sarayeva/Downloads/" + className):
+    	os.mkdir("/Users/sarayeva/Downloads/" + className)
+    os.chdir("/Users/sarayeva/Downloads/" + className)
 
-    # postCount = 0
+    postCount = 0
     for post in posts:
     	tags = post["tags"]
     	if "instructor-note" not in tags:
     		continue
 
-    	# postCount = postCount + 1
-    	# fileName = "post" + str(postCount) + ".txt"
-    	# curPostFileStream = open(fileName, 'w')
-    	# json.dump(post, curPostFileStream)
-        # curPostFileStream.close()
-
-        post = PiazzaPost.new(title: post["history"][0]["subject"], body: post["history"][0]["subject"], date: post["history"][0]["created"])
-        post.course = course
-        post.save
+    	postCount = postCount + 1
+    	fileName = "post" + str(postCount) + ".txt"
+    	curPostFileStream = open(fileName, 'w')
+    	json.dump(post, curPostFileStream)
+        curPostFileStream.close()
 print "done"
