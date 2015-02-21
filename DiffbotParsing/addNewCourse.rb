@@ -6,41 +6,45 @@ courseName = ARGV[0]
 courseURL = ARGV[1]
 
 course = Course.new(name: CourseName)
+course.save
 diffbotURLToken = ""
 api = ""
 
 case courseName
-	when courseName = "CS 106B"
+	when courseName = "CS106B"
         api = "CS106B"
-	when courseName = "CS 103"
+	when courseName = "CS103"
 	    api = "CS103"
-	when courseName = "CS 106L"
+	when courseName = "CS106L"
 	    api = "CS106L"
-	when courseName = "CS 166"
-
-	when courseName = "CS 161"
-	
-	when courseName = "CS 143"
-
-	when courseName = "CS 106A"	
+	when courseName = "CS166"
+		api = "CS103"	
+	when courseName = "CS110"
+		api = "CS110"
+	when courseName = "CS106A"
+		api = "CS103"
+	when courseName = "PWR1"
+		api = "PWR"
+	else
+		api = "CS103"
 end	
 
 
+diffBotParameter = "/api/" + api + "?token=73659789c3c2aa6d84fd9812b5ba57dc&url=" + courseURL
 
-response = Net::HTTP.get_response("diffbot.com","/api/CS103?token=73659789c3c2aa6d84fd9812b5ba57dc&url=http://web.stanford.edu/class/archive/cs/cs166/cs166.1146/")
-my_JSON = JSON.parse(response.body) #this must show the JSON contents
-p my_JSON["AnnouncementBody"]
-json = JSON.parse(response.body) #this must show the JSON contents
-# p json["AnnouncementBody"][0]["Description"]
-# p json
+
+response = Net::HTTP.get_response("diffbot.com", diffBotParameter)
+json = JSON.parse(response.body)
 
 i = 0
 json["AnnouncementBody"]. each do |sivayetski|
-	p json["AnnouncementHeader"][i]["Header"]
-	p json["AnnouncementDate"][i]["Date"]
-	p json["AnnouncementBody"][i]["Description"]
-	p "------------"
+	curHeader = json["AnnouncementHeader"][i]["Header"]
+	curDate = json["AnnouncementDate"][i]["Date"]
+	curDescription = json["AnnouncementBody"][i]["Description"]
 
+	update = Update.new(title: curHeader, date: curDate, body: curDescription)
+	update.save
+	update.course = course
 	i = i + 1 
 end
 
