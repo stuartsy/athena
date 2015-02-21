@@ -20,14 +20,14 @@
 }
 
 #enroll {
-	font-family: HelveticaNeue, Helvatica;
-	font-weight: bold;
-	text-align: center;
-	background-color: #808080;
-	padding: 10px;
 	margin: 50px 33% 40px 33%;
 	border-radius: 5px;
 }
+
+#enroll button {
+	font-weight: bold;
+}
+
 
 .athena_logo {
 	width: 250px;

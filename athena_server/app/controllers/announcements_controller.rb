@@ -8,8 +8,11 @@ class AnnouncementsController < ApplicationController
 		# courseName = ARGV[0]
 		# courseURL = ARGV[1]
 
-		courseName = "CS106B"
-		courseURL = "http://web.stanford.edu/class/cs106b/"
+		# courseName = params[:courseName]
+		# courseURL = params[:courseURL]
+
+		courseName = "CS106A"
+		courseURL = "http://web.stanford.edu/class/cs106a/"
 
 		course = Course.new(name: courseName)
 		course.save
