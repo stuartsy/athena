@@ -5,6 +5,7 @@ class CreatePiazzaPosts < ActiveRecord::Migration
     	t.string :instructor
     	t.string :title
     	t.date :date
+    	t.integer :course_id
       t.timestamps
     end
   end

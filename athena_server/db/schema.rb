@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150221115449) do
     t.string   "body"
     t.string   "link"
     t.date     "date"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150221115449) do
     t.string   "instructor"
     t.string   "title"
     t.date     "date"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150221115449) do
   create_table "resources", force: true do |t|
     t.string   "description"
     t.string   "link"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150221115449) do
     t.string   "body"
     t.string   "link"
     t.date     "date"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -5,6 +5,7 @@ class CreateUpdates < ActiveRecord::Migration
     	t.string :body
     	t.string :link
     	t.date :date
+    	t.integer :course_id
       t.timestamps
     end
   end
