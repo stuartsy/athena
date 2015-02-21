@@ -2,8 +2,11 @@ require "net/http"
 require "json"
 require "rubygems"
 
-courseName = ARGV[0]
-courseURL = ARGV[1]
+# courseName = ARGV[0]
+# courseURL = ARGV[1]
+
+courseName = "CS106B"
+courseURL = "http://web.stanford.edu/class/cs106b/"
 
 course = Course.new(name: CourseName)
 course.save
