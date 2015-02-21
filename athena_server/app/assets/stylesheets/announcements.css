@@ -37,5 +37,15 @@
 }
 
 .class_tab {
+	width: 100%;
+}
+
+.class_name {
 	
+}
+
+.color_strip {
+	background-color: blue;
+	width: 20px;
+	height: 100%;
 }
