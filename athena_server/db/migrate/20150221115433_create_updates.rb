@@ -1,10 +1,10 @@
 class CreateUpdates < ActiveRecord::Migration
   def change
     create_table :updates do |t|
-    	t.string :title
-    	t.string :body
-    	t.string :link
-    	t.date :date
+    	t.text :title
+    	t.text :body
+    	t.text :link
+    	t.string :date
     	t.integer :course_id
       t.timestamps
     end
