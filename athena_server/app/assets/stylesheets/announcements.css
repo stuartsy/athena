@@ -1,0 +1,41 @@
+* {
+	box-sizing: border-box;
+}
+
+#sidebar {
+	color: white;
+    background-color: black;
+	border-right: 3px solid #CACACA;
+	display: inline-block;
+	height: 100%;
+	position: fixed;
+	width: 290px;
+}
+
+#content {
+    display: inline-block;
+	height: 100%;
+	padding-left: 290px;
+	width: 100%;
+	background-color: red;
+}
+
+#enroll {
+	font-family: HelveticaNeue, Helvatica;
+	font-weight: bold;
+	text-align: center;
+	background-color: #808080;
+	padding: 10px;
+	margin: 50px 33%;
+	border-radius: 5px;
+}
+
+.athena_logo {
+	width: 250px;
+	height: 60px;
+	margin: 30px 20px 5px 20px;
+}
+
+.class_tab {
+	
+}
