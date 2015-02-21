@@ -1,3 +1,0 @@
-TODO:
-Make each class's color correspond to the color that it's assigned in the website
-Make the CSS stylesheet of the calendar correspond to the stylesheet of the website <- for stuart when he implements it
