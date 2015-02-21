@@ -43,4 +43,3 @@ for i in jsonUserData["all_classes"]:
     	curPostFileStream = open(fileName, 'w')
     	json.dump(post, curPostFileStream)
         curPostFileStream.close()
-print "done"
