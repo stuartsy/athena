@@ -56,7 +56,7 @@ count = (count/3) - 1
 
 
 
-    update = Update.new(title: title, date: date, body: body, isHW: hw, isExam: exam, isPiazza: true)
+    update = Update.new(title: title, date: Date.parse(date[0..9]), body: body, isHW: hw, isExam: exam, isPiazza: true)
     update.course = course;
     update.save
 end
@@ -113,7 +113,7 @@ count = (count/3) - 1
         hw = true
     end
 
-    update = Update.new(title: title, date: date, body: body, isHW: hw, isExam: exam, isPiazza: true)
+    update = Update.new(title: title, date: Date.parse(date[0..9]), body: body, isHW: hw, isExam: exam, isPiazza: true)
     update.course = course;
     update.save
 end
