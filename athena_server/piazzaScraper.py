@@ -1,7 +1,25 @@
 from piazza_api import Piazza
+import msgpack
 from pprint import pprint
 import os
 import json
+import string
+from HTMLParser import HTMLParser
+
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
 
 p = Piazza()
 p.user_login('thomklau@stanford.edu', 'thomaslau')
@@ -19,27 +37,52 @@ for i in jsonUserData["all_classes"]:
     posts = classConnection.iter_all_posts(limit=100000)
 
     className = jsonUserData["all_classes"][i]["num"]
-    # if className == "CS 103":
-    #     course = Course.find_by_name("CS103")
-    # elif className == "CS 110":
-    #     course = Course.find_by_name("CS110")
-    # else:
-    #     continue
+    if className == "CS 103":
+        x = 0
+    elif className == "CS 110":
+        x = 0
+    else:
+        continue
 
 
     os.chdir("/Users/sarayeva/Downloads")
     if not os.path.exists("/Users/sarayeva/Downloads/" + className):
-    	os.mkdir("/Users/sarayeva/Downloads/" + className)
+        os.mkdir("/Users/sarayeva/Downloads/" + className)
     os.chdir("/Users/sarayeva/Downloads/" + className)
 
     postCount = 0
     for post in posts:
-    	tags = post["tags"]
-    	if "instructor-note" not in tags:
-    		continue
+        tags = post["tags"]
+        if "instructor-note" not in tags:
+            continue
 
-    	postCount = postCount + 1
-    	fileName = "post" + str(postCount) + ".txt"
-    	curPostFileStream = open(fileName, 'w')
-    	json.dump(post, curPostFileStream)
+        postCount = postCount + 1
+        titleName = "title" + str(postCount) + ".txt"
+        dateName = "date" + str(postCount) + ".txt"
+        bodyName = "body" + str(postCount) + ".txt"
+
+
+        text = post["history"][0]["content"]
+        title = post["history"][0]["subject"]
+        date = post["history"][0]["created"]
+
+        text = filter(lambda x: x in string.printable, text)
+        text = strip_tags(text)
+
+        title = filter(lambda x: x in string.printable, title)
+        title = strip_tags(title)
+
+        date = filter(lambda x: x in string.printable, date)
+        date = strip_tags(date)
+
+        curPostFileStream = open(titleName, 'w')
+        curPostFileStream.write(title)
+        curPostFileStream.close()   
+
+        curPostFileStream = open(dateName, 'w')
+        curPostFileStream.write(date)
+        curPostFileStream.close()
+
+        curPostFileStream = open(bodyName, 'w')
+        curPostFileStream.write(text)
         curPostFileStream.close()
