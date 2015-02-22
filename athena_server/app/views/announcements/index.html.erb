@@ -45,18 +45,20 @@
 
 	</div>
 	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
 				<% Update.all.order(:date).reverse_order.each do |update| %>
 					<div class="post_box">
-						<h2><%= update.title %></h2>
-						<h2><%= update.date %></h2>
-						<h2><%= update.course.name %></h2>
-						<p><%= update.body %></p>
+						<span class="header"><%= update.course.name %> <%= update.title %></span>
+						<% if update.date != nil %>
+						<span class="date"><%= update.date.strftime("%B %d, %Y") %></span>
+						<% end %>
+						<p class="body"><%= update.body %></p>
+						<div class="hidden_color_update" style="display: none;"><%= update.course.color %></div>
 					</div>
 				<% end %>
 		</div>
-		<div class="col-md-3"></div>
+		<div class="col-md-2"></div>
 	</div>
 </div>
  </div>

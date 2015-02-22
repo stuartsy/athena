@@ -13,9 +13,13 @@ courseURL = course.syllabusLink
 diffbotURLToken = ""
 api = ""
 
+courseName.gsub!(/\s+/, "")
+
 case courseName
 	when courseName = "CS106B"
         api = "CS106B"
+  when courseName = "CS 106B"
+	     api = "CS106B"
 	when courseName = "CS103"
 	    api = "CS103"
 	when courseName = "CS106L"
@@ -26,7 +30,7 @@ case courseName
 		api = "CS110"
 	when courseName = "CS106A"
 		api = "CS103"
-	when courseName = "PWR1"
+	when courseName = "PWR1" || courseName = "PWR1CA"
 		api = "PWR"
 	else
 		api = "CS103"
@@ -41,7 +45,12 @@ json = JSON.parse(response.body)
 
 k = 0
 	json["AnnouncementBody"]. each do |sivayetski|
+
+		if api == "CS103"
+	curHeader = json["AnnouncementHeader"][k+1]["Header"]
+		else
 	curHeader = json["AnnouncementHeader"][k]["Header"]
+		end
 	
 	curDate = json["AnnouncementDate"][k]["Date"]
 	curDescription = json["AnnouncementBody"][k]["Description"]

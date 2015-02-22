@@ -20,11 +20,13 @@ var colors = ["#FFD2D2", "#FFE9D7", "#FFFDC0", "#E9FFD4", "#C0FFEA", "#C2EFFF", 
 
 $(document).ready(function(){
 
-
+	$(".hidden_color_update").each(function(index, elem) {
+		var color = $(elem).html();
+		$(elem).parent().css("background-color", color);
+	});
 
 	$(".hidden_color").each(function(index, elem) {
 		var color = $(elem).html();
-		console.log(color);
 		$(elem).parent().find('.color_strip').css("background-color", color);
 	});
 

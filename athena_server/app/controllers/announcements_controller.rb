@@ -90,7 +90,26 @@ end
 
 
 	def post_course
-		course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: params[:courseColor])
+		hex = 0
+		case params[:courseColor]
+		when "red"
+			hex = "#FFD2D2"
+		when "orange"
+			hex = "#FFE9D7"
+		when "yellow"
+			hex = "#FFFDC0"
+		when "green"
+			hex = "#E9FFD4"
+		when "teal"
+			hex = "#C0FFEA"
+		when "blue"
+			hex = "#C2EFFF"
+		when "purple"
+			hex = "#DAD9FF"
+		else
+			hex = "F8C7FF"
+		end
+		course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: hex)
 		course.save
 		Update.reimageUpdatesForCourse(course.id)
 		puts "updated course #{course.id}"
