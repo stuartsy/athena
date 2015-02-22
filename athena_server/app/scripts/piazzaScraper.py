@@ -1,5 +1,4 @@
 from piazza_api import Piazza
-import msgpack
 from pprint import pprint
 import os
 import json
