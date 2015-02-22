@@ -30,6 +30,12 @@ $(document).ready(function(){
 		$(elem).parent().find('.color_strip').css("background-color", color);
 	});
 
+	$('.class_tab').hover(function(){
+		$(this).css("background-color", "#727272");
+	}, function(){
+		$(this).css("background-color", "transparent");
+	});
+
 	$(".class_tab").click(function(){
 
 		if($(this).hasClass("selectedCourse")) {

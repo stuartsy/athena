@@ -1,8 +1,8 @@
 class AnnouncementsController < ApplicationController
 	def testscript
-			require "net/http"
-require "json"
-require "rubygems"
+		require "net/http"
+		require "json"
+		require "rubygems"
 
 # courseName = ARGV[0]
 # courseURL = ARGV[1]
@@ -16,22 +16,22 @@ diffbotURLToken = ""
 api = ""
 
 case courseName
-	when courseName = "CS106B"
-        api = "CS106B"
-	when courseName = "CS103"
-	    api = "CS103"
-	when courseName = "CS106L"
-	    api = "CS106L"
-	when courseName = "CS166"
-		api = "CS103"	
-	when courseName = "CS110"
-		api = "CS110"
-	when courseName = "CS106A"
-		api = "CS103"
-	when courseName = "PWR1"
-		api = "PWR"
-	else
-		api = "CS103"
+when courseName = "CS106B"
+	api = "CS106B"
+when courseName = "CS103"
+	api = "CS103"
+when courseName = "CS106L"
+	api = "CS106L"
+when courseName = "CS166"
+	api = "CS103"	
+when courseName = "CS110"
+	api = "CS110"
+when courseName = "CS106A"
+	api = "CS103"
+when courseName = "PWR1"
+	api = "PWR"
+else
+	api = "CS103"
 end	
 
 
@@ -83,37 +83,165 @@ json["AnnouncementBody"]. each do |sivayetski|
 end
 
 
-			@courses = Course.all
+@courses = Course.all
+end
+
+
+
+
+def post_course
+	hex = 0
+	case params[:courseColor]
+	when "red"
+		hex = "#FFD2D2"
+	when "orange"
+		hex = "#FFE9D7"
+	when "yellow"
+		hex = "#FFFDC0"
+	when "green"
+		hex = "#E9FFD4"
+	when "teal"
+		hex = "#C0FFEA"
+	when "blue"
+		hex = "#C2EFFF"
+	when "purple"
+		hex = "#DAD9FF"
+	else
+		hex = "#F8C7FF"
 	end
+	course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: hex)
+	course.save
+	Update.reimageUpdatesForCourse(course.id)
+	puts "updated course #{course.id}"
+	render :nothing => true
+end
 
 
 
+def loadPiazzaData
+	# filePath = Dir.pwd
+	filePath = Rails.root.to_s + "/app/scripts"
+	folderPath = filePath + "/CS\ 103"
+	Dir.chdir folderPath
+	dirStruct = Dir.new Dir.pwd
 
-	def post_course
-		hex = 0
-		case params[:courseColor]
-		when "red"
-			hex = "#FFD2D2"
-		when "orange"
-			hex = "#FFE9D7"
-		when "yellow"
-			hex = "#FFFDC0"
-		when "green"
-			hex = "#E9FFD4"
-		when "teal"
-			hex = "#C0FFEA"
-		when "blue"
-			hex = "#C2EFFF"
-		when "purple"
-			hex = "#DAD9FF"
-		else
-			hex = "#F8C7FF"
-		end
-		course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: hex)
+	course = 0
+	if !Course.exists?(:name => "CS 103")
+		course = Course.new(name: "CS 103")
 		course.save
-		Update.reimageUpdatesForCourse(course.id)
-		puts "updated course #{course.id}"
-		render :nothing => true
+	else
+		course = Course.find_by_name("CS 103")
 	end
+
+
+
+	count = Dir["**/*"].length
+	count = (count/3) - 1
+
+	(1..count).each do |i|
+		puts "VALUE OF I: #{i}"
+		titleName = "title" + i.to_s + ".txt"
+		dateName = "date" + i.to_s + ".txt"
+		bodyName = "body" + i.to_s + ".txt"
+
+		title = File.read(titleName)
+		date = File.read(dateName)
+		body = File.read(bodyName)
+
+		hw = false
+		exam = false
+
+		if body.match(/midterm/i)
+			exam = true
+		end
+		if body.match(/final/i)
+			exam = true
+		end 
+		if body.match(/exam/i)
+			exam = true
+		end
+		if body.match(/test/i)
+			exam = true
+		end
+
+		if body.match(/hw/i)
+			hw = true
+		end
+		if body.match(/assignment/i)
+			hw = true
+		end 
+		if body.match(/problem/i)
+			hw = true
+		end
+		if body.match(/homework/i)
+			hw = true
+		end
+
+
+
+		update = Update.new(title: title, date: Date.parse(date[0..9]), body: body, isHW: hw, isExam: exam, isPiazza: true)
+		update.course = course;
+		update.save
+	end
+
+
+	folderPath = filePath + "/CS\ 110"
+	Dir.chdir folderPath
+	dirStruct = Dir.new Dir.pwd
+
+	if !Course.exists?(:name => "CS 110")
+		course = Course.new(name: "CS 110")
+		course.save
+	else
+		course = Course.find_by_name("CS 110")
+	end
+	count = Dir["**/*"].length
+	count = (count/3) - 1
+
+	(1..count).each do |i|
+		titleName = "title" + i.to_s + ".txt"
+		dateName = "date" + i.to_s + ".txt"
+		bodyName = "body" + i.to_s + ".txt"
+
+		title = File.read(titleName)
+		date = File.read(dateName)
+		body = File.read(bodyName)
+
+		hw = false
+		exam = false
+
+		if body.match(/midterm/i)
+			exam = true
+		end
+		if body.match(/final/i)
+			exam = true
+		end 
+		if body.match(/exam/i)
+			exam = true
+		end
+		if body.match(/test/i)
+			exam = true
+		end
+
+		if body.match(/hw/i)
+			hw = true
+		end
+		if body.match(/assignment/i)
+			hw = true
+		end 
+		if body.match(/problem/i)
+			hw = true
+		end
+		if body.match(/homework/i)
+			hw = true
+		end
+
+		update = Update.new(title: title, date: Date.parse(date[0..9]), body: body, isHW: hw, isExam: exam, isPiazza: true)
+		update.course = course;
+		update.save
+	end
+
+	render :nothing => true
+end
 
 end
