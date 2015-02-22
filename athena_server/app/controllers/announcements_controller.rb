@@ -1,4 +1,7 @@
 class AnnouncementsController < ApplicationController
+	def index
+	end
+
 	def testscript
 		require "net/http"
 		require "json"
@@ -249,7 +252,9 @@ def loadPiazzaData
 		update.save
 	end
 
-	render :nothing => true
+	redirect_to(:controller => :announcements, :action => :index)
+
 end
+
 
 end

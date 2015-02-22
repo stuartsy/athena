@@ -78,8 +78,27 @@ function filterPosts() {
 	}
 }
 
-	$(document).ready(function(){
+$(document).init(function(){
+	console.log("doc init");
+})
 
+	$(document).ready(function(){
+		console.log("document ready");
+
+		$("#piazza_button").on('click', function(e) {
+			$.ajax({
+		url: "/announcements/loadPiazzaData",
+		method: 'GET',
+		success: function(response) {
+			console.log(response);
+			console.log("POST WAS A SUCCESS");
+			location.reload();
+		},
+		failure: function(response) {
+			location.reload();
+		}
+	})
+		})
 
 		$("#dropdown_filter").on('change', function(e) {
 			filterPosts();
@@ -94,6 +113,7 @@ function filterPosts() {
 		$(".hidden_color_update").each(function(index, elem) {
 			var color = $(elem).html();
 			$(elem).parent().css("background-color", color);
+			console.log("set background-color");
 		});
 
 		$(".hidden_color").each(function(index, elem) {

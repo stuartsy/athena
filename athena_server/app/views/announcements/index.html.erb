@@ -9,7 +9,7 @@
 	</a>
 
 	<div id="enroll">
-    <a id="enroll_button" href="#myModal" class="btn btn-lg" data-toggle="modal">Enroll</a>
+    	<a id="enroll_button" href="#myModal" class="btn btn-lg" data-toggle="modal">Enroll</a>
 	</div>
 	
 	<% Course.all.each do |course| %>
@@ -19,6 +19,10 @@
 		<div class="hidden_color" style="display: none;"><%= course.color %></div>
 	</div>
 	<% end %>
+
+	<div id="piazza">
+    	<a id="piazza_button" class="btn btn-lg">Piazza</a>
+	</div>
 
 </div>
 
