@@ -3,9 +3,11 @@ class CreateUpdates < ActiveRecord::Migration
     create_table :updates do |t|
     	t.text :title
     	t.text :body
-    	t.text :link
     	t.string :date
     	t.integer :course_id
+      t.boolean :isHW
+      t.boolean :isExam
+      t.boolean :isPiazza
       t.timestamps
     end
   end

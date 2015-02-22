@@ -20,4 +20,16 @@ $(document).ready(function(){
 		console.log("click");
 		$(this).css("background-color", "blue");
 	})
+
+	$('#lists').click(function() {
+        $(this).removeClass("btn btn-default")
+        $(this).addClass("btn btn-default disabled");
+        $(this).parent().find('#calendar').removeClass("disabled");
+      });
+	
+    $('#calendar').click(function() {
+        $(this).removeClass("btn btn-default")
+        $(this).addClass("btn btn-default disabled");     
+        $(this).parent().find('#lists').removeClass("disabled"); 
+      });
 })
