@@ -32,6 +32,9 @@ rawUserData = open('userProfile.txt')
 jsonUserData = json.load(rawUserData)
 rawUserData.close()
 
+
+masterPath = os.getcwd()
+
 for i in jsonUserData["all_classes"]:
     classConnection = p.network(i)
     posts = classConnection.iter_all_posts(limit=100000)
@@ -45,10 +48,11 @@ for i in jsonUserData["all_classes"]:
         continue
 
 
-    os.chdir("/Users/sarayeva/Downloads")
-    if not os.path.exists("/Users/sarayeva/Downloads/" + className):
-        os.mkdir("/Users/sarayeva/Downloads/" + className)
-    os.chdir("/Users/sarayeva/Downloads/" + className)
+    # reset to the relative root
+    os.chdir(masterPath)
+    if not os.path.exists(masterPath + "/" + className):
+        os.mkdir(masterPath + "/" + className)
+    os.chdir(masterPath + "/" + className)
 
     postCount = 0
     for post in posts:

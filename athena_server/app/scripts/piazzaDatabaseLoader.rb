@@ -3,7 +3,15 @@ folderPath = filePath + "/CS103"
 Dir.chdir folderPath
 dirStruct = Dir.new Dir.pwd
 
-course = Course.find_by_name("CS103")
+course = 0
+if !Course.exists?(:name => "CS103")
+    course = Course.new(name: "CS103")
+    course.save
+else
+    course = Course.find_by_name("CS103")
+end
+
+
 
 count = Dir["**/*"].length
 count = (count/3) - 1
@@ -58,8 +66,12 @@ folderPath = filePath + "/CS110"
 Dir.chdir folderPath
 dirStruct = Dir.new Dir.pwd
 
-course = Course.find_by_name("CS110")
-
+if !Course.exists?(:name => "CS110")
+    course = Course.new(name: "CS110")
+    course.save
+else
+    course = Course.find_by_name("CS110")
+end
 count = Dir["**/*"].length
 count = (count/3) - 1
 
