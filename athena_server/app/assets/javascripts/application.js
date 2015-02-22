@@ -15,32 +15,9 @@
 //= require turbolinks
 //= require_tree .
 
-// var classColors = [new Class("MATH 42", "blue")];
-
-// function Class(name, color) {
-// this.name = name;
-// this.color = color;
-// }
-
-var colorAssignments = {
-	Math: "blue",
-	CS: "pink"
-}
-
-$(function(){
+$(document).ready(function(){
 	$(".class_tab").click(function(){
 		console.log("click");
-		if($(this).hasClass("selected_class")) {
-			$(this).removeClass("selected_class");
-			$(this).css("background-color", "transparent");
-		} else {
-			$(this).addClass("selected_class");
-			// var nameOfClass = $(this).children(".class_name").html();
-			var nameOfClass = "CS";
-			$(this).css("background-color", colorAssignments[nameOfClass]);
-			console.log(nameOfClass);
-			console.log(colorAssignments[nameOfClass]);
-		}
-
+		$(this).css("background-color", "blue");
 	})
 })
