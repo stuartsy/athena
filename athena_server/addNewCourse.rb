@@ -39,11 +39,11 @@ diffBotParameter = "/api/" + api + "?token=73659789c3c2aa6d84fd9812b5ba57dc&url=
 response = Net::HTTP.get_response("diffbot.com", diffBotParameter)
 json = JSON.parse(response.body)
 
-i = 0
+k = 0
 json["AnnouncementBody"]. each do |sivayetski|
-	curHeader = json["AnnouncementHeader"][i]["Header"]
-	curDate = json["AnnouncementDate"][i]["Date"]
-	curDescription = json["AnnouncementBody"][i]["Description"]
+	curHeader = json["AnnouncementHeader"][k]["Header"]
+	curDate = json["AnnouncementDate"][k]["Date"]
+	curDescription = json["AnnouncementBody"][k]["Description"]
 
 	exam = false
 	hw = false
@@ -74,9 +74,9 @@ json["AnnouncementBody"]. each do |sivayetski|
 		hw = true
 	end
 
-	update = Update.new(title: curHeader, date: curDate, body: curDescription)
+	update = Update.new(title: curHeader, date: curDate, body: curDescription, isHW: hw, isExam: exam, isPiazza: false)
 	update.course = course
 	update.save
-	i = i + 1 
+	k = k + 1 
 end
 
