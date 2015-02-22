@@ -5,6 +5,7 @@ class Update < ActiveRecord::Base
 		require "net/http"
 require "json"
 require "rubygems"
+require "Date"
 
 course = Course.find(course_id)
 courseName = course.name
@@ -84,7 +85,7 @@ k = 0
 		hw = true
 	end
 
-	update = Update.new(title: curHeader, date: curDate, body: curDescription, isHW: hw, isExam: exam, isPiazza: false)
+	update = Update.new(title: curHeader, date: Date.parse(curDate), body: curDescription, isHW: hw, isExam: exam, isPiazza: false)
 	update.course = course
 	update.save
 	k = k + 1 

@@ -45,7 +45,36 @@ $(document).ready(function(){
 		}
 
 		// here we are going to do the filtering
-
+		$(".class_tab").each(function(index, elem) {
+			if($(this).hasClass("selectedCourse")) {
+				var courseName = $(this).find('.class_name').html()
+				console.log("courseName of selectedCourse " + courseName)
+				$(".post_box").each(function(index, elem) {
+					//loop through each post and check if it should be displayed
+					console.log("this is the found header: " + $(this).find(".header").html());
+					if(courseName == $(this).find(".header").html()) {
+						console.log("found a matching post");
+						//course is selected
+						if($(this).hasClass("hidden")) {
+							$(this).removeClass("hidden");
+						}
+					}
+				});
+			} else {
+				var courseName = $(this).find('.class_name').html()
+				$(".post_box").each(function(index, elem) {
+					//loop through each post and check if it should be displayed
+					if(courseName == $(this).find(".header").html()) {
+						//course is not selected
+						if($(this).hasClass("hidden")) {
+							
+						} else {
+							$(this).addClass("hidden");
+						}
+					}
+				});
+			}
+		});
 
 
 	});
@@ -80,9 +109,9 @@ $(document).ready(function(){
     			location.reload();
     		},
     		failure: function(response) {
-
+				location.reload();
     		}
     	})
-
+    	location.reload();
     });
 });

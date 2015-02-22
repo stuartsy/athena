@@ -85,6 +85,9 @@
 }
 
 .header {
+}
+
+.title {
 	font-size: 28px;
 	font-weight: bolder;
 	display: block;

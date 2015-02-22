@@ -49,7 +49,7 @@
 		<div class="col-md-8">
 				<% Update.all.order(:date).reverse_order.each do |update| %>
 					<div class="post_box">
-						<span class="header"><%= update.course.name %> <%= update.title %></span>
+						<span class="title"><span class="header"><%= update.course.name %></span> <%= update.title %></span>
 						<% if update.date != nil %>
 						<span class="date"><%= update.date.strftime("%B %d, %Y") %></span>
 						<% end %>
