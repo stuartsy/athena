@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150221115433) do
   create_table "updates", force: true do |t|
     t.text     "title"
     t.text     "body"
-    t.string   "date"
+    t.date     "date"
     t.integer  "course_id"
     t.boolean  "isHW"
     t.boolean  "isExam"

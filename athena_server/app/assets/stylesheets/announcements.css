@@ -19,7 +19,7 @@
 }
 
 #enroll {
-	margin: 50px 33% 40px 33%;
+	margin: 30px 33% 30px 33%;
 	border-radius: 5px;
 }
 
@@ -57,7 +57,7 @@
 
 .color_strip {
 	background-color: blue;
-	width: 10px;
+	width: 13px;
 	height: 70px;
 	float: right;
 	transition: all .15s ease-in-out;
@@ -69,6 +69,7 @@
 
 .class_tab:hover {
 	background-color: #666666;
+	cursor: pointer;
 }
 
 .clear {

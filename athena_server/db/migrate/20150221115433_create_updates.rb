@@ -3,7 +3,7 @@ class CreateUpdates < ActiveRecord::Migration
     create_table :updates do |t|
     	t.text :title
     	t.text :body
-    	t.string :date
+    	t.date :date
     	t.integer :course_id
       t.boolean :isHW
       t.boolean :isExam
