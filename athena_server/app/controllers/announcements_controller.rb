@@ -107,7 +107,7 @@ end
 		when "purple"
 			hex = "#DAD9FF"
 		else
-			hex = "F8C7FF"
+			hex = "#F8C7FF"
 		end
 		course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: hex)
 		course.save
