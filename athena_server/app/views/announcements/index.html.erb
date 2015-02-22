@@ -9,7 +9,7 @@
 	</a>
 
 	<div id="enroll">
-    <center><a id="enroll_button" href="#myModal" class="btn btn-lg" data-toggle="modal">Enroll</a></center>
+    <a id="enroll_button" href="#myModal" class="btn btn-lg" data-toggle="modal">Enroll</a>
 	</div>
 	
 	<% Course.all.each do |course| %>
@@ -24,32 +24,46 @@
 
 <div id="content">
 <div class="container-fluid">
-	<div class="row">
+	<div style="height: 20px;"></div>
+	<div class="row" class>
+		<!-- TOPBAR ROW -->
+		<div class="col-md-6"></div>
 
-		<div class="col-md-3"></div>
-		<div class="col-md-3">
-			<!-- TOPBAR -->
-			<div class="btn-group" role="group" aria-label="...">
+		<div class="col-md-4">
+			<!-- <div class="btn-group" role="group" aria-label="...">
               <button id="lists" type="button" class="btn btn-default disabled">List</button>
               <button id="calendar" type="button" class="btn btn-default">Calendar</button>
-            </div>
-		</div>
-		<div class="col-md-3">
-			<select class="form-control">
-            	<option value="All">One</option>
-            	<option value="Homeworks">Two</option>
-            	<option value="Exams">Three</option>
+            </div> -->
+			<select class="form-control" id="dropdown_filter">
+            	<option value="all">All</option>
+            	<option value="homework">Homeworks</option>
+            	<option value="exam">Exams</option>
+            	<option value="piazza">Piazza</option>
             </select>
 		</div>
-		<div class="col-md-3"></div>
+		<div class="col-md-2"></div>
 
 	</div>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 				<% Update.all.order(:date).reverse_order.each do |update| %>
-					<div class="post_box">
-						<span class="title"><span class="header"><%= update.course.name %></span> <%= update.title %></span>
+					<% tags = "" %>
+					<% if update.isHW %>
+						<% tags += " homework" %>
+					<% elsif update.isExam %>
+						<% tags += " exam" %>
+					<% elsif update.isPiazza %>
+						<% tags += " piazza" %>
+					<% end %>
+					<% tags = "post_box" + tags %>
+					<div class="<%= tags %>">
+						<span class="title">
+							<span class="header"><%= update.course.name %></span> <%= update.title %>
+							<% if update.isPiazza %>
+								<div class="piazza_logo"><%= image_tag "piazza_logo.gif" %></div>
+							<% end %>
+						</span>
 						<% if update.date != nil %>
 						<span class="date"><%= update.date.strftime("%B %d, %Y") %></span>
 						<% end %>
