@@ -5,17 +5,20 @@
 <div id="sidebar">
 
 	<a href="/">
-		<%= image_tag "AthenaLogo.png", :class => "athena_logo" %>
+		<%= image_tag "AthenaLogo2.png", :class => "athena_logo" %>
 	</a>
 
 	<div id="enroll">
-    <center><a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Enroll</a></center>
+    <center><a id="enroll_button" href="#myModal" class="btn btn-lg" data-toggle="modal">Enroll</a></center>
 	</div>
-
+	
+	<% Course.all.each do |course| %>
 	<div class="class_tab">
-		<div class="class_name">MATH 42</div>
+		<div class="class_name"><%= course.name %></div>
 		<div class="color_strip"></div>
 	</div>
+	<% end %>
+
 </div>
 
 <div id="content">
@@ -32,11 +35,9 @@
 		</div>
 		<div class="col-md-3">
 			<select class="form-control">
-            	<option value="one">One</option>
-            	<option value="two">Two</option>
-            	<option value="three">Three</option>
-            	<option value="four">Four</option>
-            	<option value="five">Five</option>
+            	<option value="All">One</option>
+            	<option value="Homeworks">Two</option>
+            	<option value="Exams">Three</option>
             </select>
 		</div>
 		<div class="col-md-3"></div>
@@ -83,7 +84,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Enroll</button>
+                    <button id="submit" type="button" class="btn btn-primary" data-dismiss="modal">Enroll</button>
                 </div>
             </div>
         </div>

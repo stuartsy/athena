@@ -4,7 +4,7 @@
 
 #sidebar {
 	color: white;
-    background-color: black;
+    background-color: #808080;
 	display: inline-block;
 	height: 100%;
 	position: fixed;
@@ -27,6 +27,12 @@
 	font-weight: bold;
 }
 
+#enroll_button {
+	background-color: #404040;
+	color: white;
+	font-weight: bolder;
+}
+
 
 .athena_logo {
 	width: 250px;
@@ -41,7 +47,7 @@
 }
 
 .class_name {
-	width: 270px;
+	width: 260px;
 	height: 70px;
 	float: left;
 	font-family: HelveticaNeue, Helvatica;
@@ -58,13 +64,18 @@
 }
 
 .class_tab:hover .color_strip{
-	width: 20px;
+	width: 30px;
 }
 
 .class_tab:hover {
-	background-color: #333333;
+	background-color: #666666;
 }
 
 .clear {
 	clear: both;
+}
+
+.post_box{
+	border: 1px solid black;
+	margin: 20px 0;
 }

@@ -60,4 +60,10 @@ class AnnouncementsController < ApplicationController
 		@courses = Course.all
 	end
 
+	def post_course
+		course = Course.new(name: params[:courseName], syllabusLink: params[:courseID])
+		course.save
+		render :nothing => true
+	end
+
 end
