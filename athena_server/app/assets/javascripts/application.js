@@ -30,14 +30,21 @@ $(document).ready(function(){
 		$(elem).parent().find('.color_strip').css("background-color", color);
 	});
 
-	// $('.class_tab').hover(function(){
-	// 	if($(this).hasClass("selectedCourse")){
-			
-	// 	}
-	// 	$(this).css("background-color", "#727272");
-	// }, function(){
-	// 	$(this).css("background-color", "transparent");
-	// });
+	$('.class_tab').hover(function(){
+		if($(this).hasClass("selectedCourse")){
+			//make darker
+		}
+		else {
+			$(this).css("background-color", "#727272");
+		}
+	}, function(){
+		if($(this).hasClass("selectedCourse")){
+			var color = $(this).find('.hidden_color').html();
+			$(this).css("background-color", color);
+		} else {
+			$(this).css("background-color", "transparent");
+		}
+	});
 
 	$(".class_tab").click(function(){
 
