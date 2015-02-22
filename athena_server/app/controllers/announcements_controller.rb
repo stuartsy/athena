@@ -1,14 +1,14 @@
 class AnnouncementsController < ApplicationController
 	def testscript
-		require "net/http"
-		require "json"
-		require "rubygems"
+			require "net/http"
+require "json"
+require "rubygems"
 
 # courseName = ARGV[0]
 # courseURL = ARGV[1]
 
-courseName = "PWR1"
-courseURL = "https://rhetoricofgaming.wordpress.com/blogging/page/4/"
+courseName = "CS106B"
+courseURL = "http://web.stanford.edu/class/cs106b/"
 
 course = Course.new(name: courseName)
 course.save
@@ -16,22 +16,22 @@ diffbotURLToken = ""
 api = ""
 
 case courseName
-when courseName = "CS106B"
-	api = "CS106B"
-when courseName = "CS103"
-	api = "CS103"
-when courseName = "CS106L"
-	api = "CS106L"
-when courseName = "CS166"
-	api = "CS103"	
-when courseName = "CS110"
-	api = "CS110"
-when courseName = "CS106A"
-	api = "CS103"
-when courseName = "PWR1"
-	api = "PWR"
-else
-	api = "CS103"
+	when courseName = "CS106B"
+        api = "CS106B"
+	when courseName = "CS103"
+	    api = "CS103"
+	when courseName = "CS106L"
+	    api = "CS106L"
+	when courseName = "CS166"
+		api = "CS103"	
+	when courseName = "CS110"
+		api = "CS110"
+	when courseName = "CS106A"
+		api = "CS103"
+	when courseName = "PWR1"
+		api = "PWR"
+	else
+		api = "CS103"
 end	
 
 
@@ -42,16 +42,9 @@ response = Net::HTTP.get_response("diffbot.com", diffBotParameter)
 json = JSON.parse(response.body)
 
 k = 0
-json["AnnouncementBody"].each do |sivayetski|
-
-	if json["AnnouncementHeader"][k] != nil
-		curHeader = json["AnnouncementHeader"][k]["Header"]
-	end
-	if(api == "CS106B")
-	curDate = json["AnnouncementDate"][k+1]["Date"]
-	else
+json["AnnouncementBody"]. each do |sivayetski|
+	curHeader = json["AnnouncementHeader"][k]["Header"]
 	curDate = json["AnnouncementDate"][k]["Date"]
-	end
 	curDescription = json["AnnouncementBody"][k]["Description"]
 
 	exam = false
@@ -83,22 +76,25 @@ json["AnnouncementBody"].each do |sivayetski|
 		hw = true
 	end
 
-	puts curDate
-	update = Update.new(title: curHeader, date: Time.parse(curDate), body: curDescription, isHW: hw, isExam: exam, isPiazza: false)
+	update = Update.new(title: curHeader, date: curDate, body: curDescription, isHW: hw, isExam: exam, isPiazza: false)
 	update.course = course
 	update.save
 	k = k + 1 
-
-	@courses = Course.all
 end
 
 
-end
+			@courses = Course.all
+	end
 
-def post_course
-	course = Course.new(name: params[:courseName], syllabusLink: params[:courseID])
-	course.save
-	render :nothing => true
-end
+
+
+
+	def post_course
+		course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: params[:courseColor])
+		course.save
+		Update.reimageUpdatesForCourse(course.id)
+		puts "updated course #{course.id}"
+		render :nothing => true
+	end
 
 end

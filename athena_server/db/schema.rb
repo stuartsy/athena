@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150221115433) do
     t.string   "name"
     t.string   "syllabusLink"
     t.string   "calendarLink"
+    t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

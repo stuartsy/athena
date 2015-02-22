@@ -4,6 +4,7 @@ class CreateCourses < ActiveRecord::Migration
     	t.string :name
     	t.string :syllabusLink
     	t.string :calendarLink
+    	t.string :color
       t.timestamps
     end
   end

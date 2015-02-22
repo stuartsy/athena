@@ -16,6 +16,7 @@
 	<div class="class_tab">
 		<div class="class_name"><%= course.name %></div>
 		<div class="color_strip"></div>
+		<div class="hidden_color" style="display: none;"><%= course.color %></div>
 	</div>
 	<% end %>
 
@@ -86,6 +87,16 @@
                         </div>
                         </div>
                     </form>
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                        <label for="courseColor" class="col-sm-2 control-label">Color</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="courseColor" placeholder="Enter Course Color">
+                        </div>
+                        </div>
+                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

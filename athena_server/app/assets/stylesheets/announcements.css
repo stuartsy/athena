@@ -56,7 +56,7 @@
 }
 
 .color_strip {
-	background-color: blue;
+	background-color: transparent;
 	width: 13px;
 	height: 70px;
 	float: right;
@@ -68,7 +68,7 @@
 }
 
 .class_tab:hover {
-	background-color: #666666;
+	background-color: #666;
 	cursor: pointer;
 }
 

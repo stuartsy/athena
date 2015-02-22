@@ -8,7 +8,7 @@ require "rubygems"
 courseName = "CS106B"
 courseURL = "http://web.stanford.edu/class/cs106b/"
 
-course = Course.new(name: CourseName)
+course = Course.new(name: courseName)
 course.save
 diffbotURLToken = ""
 api = ""

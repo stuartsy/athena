@@ -15,12 +15,37 @@
 //= require turbolinks
 //= require_tree .
 
+var colors = ["#FFD2D2", "#FFE9D7", "#FFFDC0", "#E9FFD4", "#C0FFEA", "#C2EFFF", "#DAD9FF", "#FBC7FF"];
 
 
 $(document).ready(function(){
+
+
+
+	$(".hidden_color").each(function(index, elem) {
+		var color = $(elem).html();
+		console.log(color);
+		$(elem).parent().find('.color_strip').css("background-color", color);
+	});
+
 	$(".class_tab").click(function(){
+
+		if($(this).hasClass("selectedCourse")) {
+			$(this).removeClass("selectedCourse");
+			$(this).css("background-color", "#808080");
+			$(this).css("color", "white");
+			$(this).css("font-weight", "normal");
+		} else {
+			$(this).addClass("selectedCourse");
+			$(this).css("background-color", $(this).find(".hidden_color").html());
+			$(this).css("color", "black");
+			$(this).css("font-weight", "bolder");
+		}
+
 		console.log("click");
-		$(this).css("background-color", "blue");
+
+
+
 	});
 
 	$('#lists').click(function() {
@@ -39,7 +64,8 @@ $(document).ready(function(){
     	console.log("clicked submit");
     	var params = {
     		courseName: $(this).parent().parent().find('#courseName').val(),
-    		courseID: $(this).parent().parent().find('#courseID').val()
+    		courseID: $(this).parent().parent().find('#courseID').val(),
+    		courseColor: $(this).parent().parent().find('#courseColor').val()
     	}
     	console.log(params);
     	$.ajax({
