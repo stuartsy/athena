@@ -109,12 +109,20 @@ def post_course
 	else
 		hex = "#F8C7FF"
 	end
-	course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: hex)
+	#check if course was already created
+	course = 0
+	if !Course.exists?(:name => params[:courseName])
+		course = Course.new(name: params[:courseName], syllabusLink: params[:courseID], color: hex)
+	else
+		course = Course.find_by_name(params[:courseName])
+	end
+
 	course.save
 	Update.reimageUpdatesForCourse(course.id)
 	puts "updated course #{course.id}"
 	render :nothing => true
 end
+
 
 
 
@@ -127,7 +135,7 @@ def loadPiazzaData
 
 	course = 0
 	if !Course.exists?(:name => "CS 103")
-		course = Course.new(name: "CS 103")
+		course = Course.new(name: "CS 103", color: "#C2EFFF")
 		course.save
 	else
 		course = Course.find_by_name("CS 103")
@@ -190,7 +198,7 @@ def loadPiazzaData
 	dirStruct = Dir.new Dir.pwd
 
 	if !Course.exists?(:name => "CS 110")
-		course = Course.new(name: "CS 110")
+		course = Course.new(name: "CS 110", color: "#FFD2D2")
 		course.save
 	else
 		course = Course.find_by_name("CS 110")

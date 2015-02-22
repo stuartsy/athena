@@ -30,11 +30,14 @@ $(document).ready(function(){
 		$(elem).parent().find('.color_strip').css("background-color", color);
 	});
 
-	$('.class_tab').hover(function(){
-		$(this).css("background-color", "#727272");
-	}, function(){
-		$(this).css("background-color", "transparent");
-	});
+	// $('.class_tab').hover(function(){
+	// 	if($(this).hasClass("selectedCourse")){
+			
+	// 	}
+	// 	$(this).css("background-color", "#727272");
+	// }, function(){
+	// 	$(this).css("background-color", "transparent");
+	// });
 
 	$(".class_tab").click(function(){
 
