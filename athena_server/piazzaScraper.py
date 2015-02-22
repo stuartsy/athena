@@ -19,12 +19,12 @@ for i in jsonUserData["all_classes"]:
     posts = classConnection.iter_all_posts(limit=100000)
 
     className = jsonUserData["all_classes"][i]["num"]
-    if className == "CS 103":
-        course = Course.find_by_name("CS103")
-    elif className == "CS 110":
-        course = Course.find_by_name("CS110")
-    else:
-        continue
+    # if className == "CS 103":
+    #     course = Course.find_by_name("CS103")
+    # elif className == "CS 110":
+    #     course = Course.find_by_name("CS110")
+    # else:
+    #     continue
 
 
     os.chdir("/Users/sarayeva/Downloads")
