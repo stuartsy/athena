@@ -44,7 +44,7 @@ $(document).ready(function(){
 			$(this).css("font-weight", "bolder");
 		}
 
-		console.log("click");
+		// here we are going to do the filtering
 
 
 
@@ -76,6 +76,8 @@ $(document).ready(function(){
     		data: params,
     		success: function(response) {
     			console.log(response);
+    			console.log("POST WAS A SUCCESS");
+    			location.reload();
     		},
     		failure: function(response) {
 
