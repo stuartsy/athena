@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="docs/css/bootstrap.min.css" rel="stylesheet">
+    <link href="docs/css/highlight.css" rel="stylesheet">
+    <link href="dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <link href="docs/css/main.css" rel="stylesheet">
+
+  </head>
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-lg-4">
+            <h2 class="h4">State</h2>
+            <p>
+              <input id="switch-state" type="checkbox" checked data-on-text = "List" data-off-color = 'warning' data-off-text = "Calendar">
+            </p>
+            <div class="btn-group">
+              <button type="button" data-switch-toggle="state" class="btn btn-default">Toggle</button>
+              <button type="button" data-switch-set="state" data-switch-value="true" class="btn btn-default">Set true</button>
+              <button type="button" data-switch-set="state" data-switch-value="false" class="btn btn-default">Set false</button>
+              <button type="button" data-switch-get="state" class="btn btn-default">Get</button>
+              <input type="text" data-switch-get="state" class="form-control">
+
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="docs/js/jquery.min.js"></script>
+    <script src="docs/js/bootstrap.min.js"></script>
+    <script src="docs/js/highlight.js"></script>
+    <script src="dist/js/bootstrap-switch.js"></script>
+    <script src="docs/js/main.js"></script>
+  </body>
+</html>
